@@ -3,10 +3,9 @@ import { config } from "../../config";
 import { MdAdd } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { addItem } from "../../app/features/cart";
-import Tag from "../../components/tag";
+// import Tag from "../../components/tag";
 
 function ProductCard({ item }) {
-  
   const dispatch = useDispatch();
 
   const addToCart = () => {
@@ -23,7 +22,7 @@ function ProductCard({ item }) {
     <div className="rounded-lg shadow-md shadow-green-600 border border-green-600">
       <div className="rounded-xl shadow-md overflow-hidden shadow-green-200">
         <img
-          src={`${config.apikey}/images/products/${item.image_url}`}
+          src={`${config.base_url}/images/products/${item.image_url}`}
           alt={item.description}
           className="h-32 w-full"
         />
@@ -32,7 +31,7 @@ function ProductCard({ item }) {
             {item.name}
           </h5>
           <p>{item.category.name}</p>
-          <Tag items={item.tags} />
+          {/* <Tag items={item.tags} /> */}
           <div className="flex items-center justify-between">
             <p className="font-bold text-gray-700">Rp.{item.price}</p>
             <button

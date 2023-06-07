@@ -3,13 +3,12 @@ import { MdOutlineShoppingCart } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getCategories, getProducts } from "../../app/api/product";
+import { getCategories } from "../../app/api/product";
 import Badge from "../badge";
+import { setCategory } from "../../app/features/product";
 
 export default function Header() {
   const [categories, setCategories] = useState([]);
-  const [category, setCategory] = useState("");
-  const [search, setSearch] = useState("");
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
 
@@ -17,9 +16,6 @@ export default function Header() {
     getCategories().then(({ data }) => setCategories(data));
   }, []);
 
-  useEffect(() => {
-    dispatch(getProducts({ search }));
-  }, [dispatch, category, search]);
   return (
     <header className="bg-green-500">
       <div className="px-12 py-3">
@@ -31,8 +27,8 @@ export default function Header() {
           </Link>
           <div className="pr-2">
             <select
-              onChange={(e) => setCategory(e.target.value)}
-              className=" font-base bg-transparent outline-none">
+              onChange={(e) => dispatch(setCategory(e.target.value))}
+              className=" font-base bg-transparent outline-none cursor-pointer">
               <option value="">kategori</option>
               {categories.map((category) => (
                 <option
@@ -48,7 +44,7 @@ export default function Header() {
             <input
               type="text"
               placeholder="Pesan makanan..."
-              onChange={(e) => setSearch(e.target.value)}
+              // onChange={(e) => setSearch(e.target.value)}
               className="w-full text-white bg-green-700 px-4 py-2 items-center outline-none rounded shadow-md shadow-gray-800"
             />
           </form>

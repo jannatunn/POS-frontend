@@ -1,3 +1,3 @@
 export const config = {
-  apikey: process.env.REACT_APP_API_HOST,
+  base_url: process.env.REACT_APP_API_HOST,
 };

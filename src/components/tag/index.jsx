@@ -1,6 +1,7 @@
 import React from "react";
 
 function Tag({ items, onClick }) {
+  console.log("items in tag componen ===>", items);
   return (
     <div className="">
       {items.map((item) => {

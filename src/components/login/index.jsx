@@ -2,7 +2,7 @@ import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { InputForm } from "../input";
-import { loginUser } from "../../app/api/auth";
+import { loginService } from "../../tools/authenticationHandler";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -23,10 +23,19 @@ export default function Login() {
         .required("Password wajib di isi.."),
     }),
     onSubmit: (data) => {
-      dispatch(loginUser(data));
-      console.log(data);
-      navigate("/");
+      // dispatch(loginUser(data));
+      // console.log(data);
+      // navigate("/");
       // window.location.replace("/");
+
+      loginService(data)
+        .then(() => {
+          navigate("/");
+        })
+        .then(() => {
+          // navigate back to form login and pop up error notification
+        })
+      
     },
   });
 

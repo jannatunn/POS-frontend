@@ -1,7 +1,10 @@
 import { useSelector } from "react-redux";
 
 function Profile() {
-  const auth = useSelector((state) => state.auth);
+  // NOTE: jangan check pakai auth 
+  // check dari cookies -> pakai function ini AuthentucationHandle.js -> getCurrentUse()
+  const auth = useSelector((state) => state.auth); 
+
 
   return (
     <div className="flex items-center">

@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { loginUser } from "../api/auth";
+import Cookies from "js-cookie";
 
 const initialState = {
   user: null,
@@ -11,6 +12,8 @@ const authSlice = createSlice({
   initialState,
   extraReducers: (builder) => {
     builder.addCase(loginUser.fulfilled, (state, action) => {
+      Cookies.set("name", action.payload);
+      console.log(action.payload);
       state.user = action.payload.user;
       state.token = action.payload.token;
     });

@@ -53,7 +53,7 @@ export default function Header() {
               <MdOutlineShoppingCart />
               <Badge />
             </Link>
-            <Link to={auth.user === null ? "/login" : "/profile"} className="">
+            <Link to={auth.user === null ? "/login" : "/account"} className="">
               <AiOutlineUser />
             </Link>
           </div>

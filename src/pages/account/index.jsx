@@ -1,17 +1,6 @@
-import { Link, Outlet, Route, Routes } from "react-router-dom";
+import { Outlet, Route, Routes } from "react-router-dom";
 import Profile from "../../components/profile";
-
-const Tr = ({ label, link }) => {
-  return (
-    <ul className="w-52 divide-y border border-gray-200 ">
-      <li className="px-3 py-1.5 text-sm hover:bg-green-200">
-        <Link to={link} className="capitalize  ">
-          {label}
-        </Link>
-      </li>
-    </ul>
-  );
-};
+import Tr from "../../components/table-row";
 
 function Account() {
   return (

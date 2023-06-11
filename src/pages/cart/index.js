@@ -1,8 +1,10 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { config } from "../../config";
+import { addItem, reduceItem } from "../../app/features/cart";
 
 function Cart() {
   const { cartItems, totalAmount } = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
 
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg mx-16 mt-5">
@@ -42,17 +44,43 @@ function Cart() {
                     scope="row"
                     className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
                     <img
-                      src={`${config.apikey}/images/products/${item.imgUrl}`}
+                      src={`${config.base_url}/images/products/${item.imgUrl}`}
                       alt={item.productName}
                       className="w-20"
                     />
                   </th>
                   <td className="px-6 py-4">{item.productName}</td>
-                  <td className="px-6 py-4">{item.price}</td>
+                  <td className="px-6 py-4">{item.totalPrice}</td>
                   <td className="px-6 py-4">
-                    <button className="px-3 rounded  bg-green-300">-</button>
+                    <button
+                      onClick={() =>
+                        dispatch(
+                          reduceItem({
+                            id: item.id,
+                            productName: item.productName,
+                            price: item.price,
+                            imgUrl: item.image_url,
+                          })
+                        )
+                      }
+                      className="px-3 rounded  bg-green-300">
+                      -
+                    </button>
                     <span className="p-2">{item.quantity}</span>
-                    <button className="px-3 rounded  bg-green-300">+</button>
+                    <button
+                      onClick={() =>
+                        dispatch(
+                          addItem({
+                            id: item.id,
+                            productName: item.productName,
+                            price: item.price,
+                            imgUrl: item.image_url,
+                          })
+                        )
+                      }
+                      className="px-3 rounded  bg-green-300">
+                      +
+                    </button>
                   </td>
                 </tr>
               ))}

@@ -49,7 +49,6 @@ const productSlice = createSlice({
       .addCase(getProducts.fulfilled, (state, action) => {
         state.status = "success";
         state.productItems = action.payload;
-        state.category = action.category;
       })
       .addCase(getProducts.pending, (state, action) => {
         state.status = "loading";

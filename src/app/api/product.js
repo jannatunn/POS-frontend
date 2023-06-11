@@ -17,7 +17,5 @@ export const getTags = createAsyncThunk("tags/getTags", async () => {
 });
 
 export const getTagsByCategory = async (category) => {
-  const res = await axios.get(`${config.base_url}/api/tags/${category}`);
-  console.log(res.data);
-  return res.data;
+  return await axios.get(`${config.base_url}/api/tags/${category}`);
 };

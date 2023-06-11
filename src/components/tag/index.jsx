@@ -1,7 +1,6 @@
 import React from "react";
 
 function Tag({ items, onClick }) {
-  console.log("items in tag componen ===>", items);
   return (
     <div className="">
       {items.map((item) => {
@@ -9,7 +8,7 @@ function Tag({ items, onClick }) {
           <span
             key={item._id}
             onClick={() => onClick(item.name)}
-            className="text-green-900 font-medium text-xs px-1.5 py-0.5 rounded-full cursor-pointer bg-green-200">
+            className="font-medium my-3 text-xs px-1.5 py-[1px] rounded-full cursor-pointer bg-green-200 text-green-900 ">
             {item.name}
           </span>
         );

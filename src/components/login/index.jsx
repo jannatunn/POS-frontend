@@ -1,29 +1,14 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-
-import { getCookie } from "../../tools/cookieHandller";
-import { userLogin } from "../../tools/Login";
-
-const Input = ({ label, type, value, onChange, placeholder }) => {
-  return (
-    <div className="my-3 w-full">
-      <label htmlFor={label} className="text-base font-semibold capitalize">
-        {label}
-      </label>
-      <input
-        type={type}
-        id={label}
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-        className="px-3 py-2 w-full text-sm text-gray-900 outline-none bg-green-200"
-      />
-    </div>
-  );
-};
+import { InputForm } from "../input";
+import { loginUser } from "../../app/api/auth";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -38,21 +23,19 @@ export default function Login() {
         .required("Password wajib di isi.."),
     }),
     onSubmit: (data) => {
+      dispatch(loginUser(data));
       console.log(data);
-      userLogin(data);
-
-      // dispatch(loginUser(data));
-      // navigate("/");
-      // console.log(data);
+      navigate("/");
+      // window.location.replace("/");
     },
   });
 
-  useEffect(() => {
-    let cookies = getCookie();
-    if (cookies !== "") {
-      window.location.replace("/");
-    }
-  });
+  // useEffect(() => {
+  //   let cookies = getCookie();
+  //   if (cookies !== "") {
+  //     window.location.replace("/");
+  //   }
+  // });
 
   return (
     <div className="my-6 w-96 mx-auto  shadow-md shadow-gray-400 rounded overflow-hidden">
@@ -60,7 +43,7 @@ export default function Login() {
         Login
       </h2>
       <form onSubmit={formik.handleSubmit} className="mx-10">
-        <Input
+        <InputForm
           label="email"
           type="email"
           placeholder="masukan email.."
@@ -70,7 +53,7 @@ export default function Login() {
         {formik.touched.email ? (
           <div className="text-red-500 text-xs">{formik.errors.email}</div>
         ) : null}
-        <Input
+        <InputForm
           label="password"
           type="password"
           placeholder="masukan password.."

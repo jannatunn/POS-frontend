@@ -3,7 +3,8 @@ import { config } from "../../config";
 import { MdAdd } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { addItem } from "../../app/features/cart";
-// import Tag from "../../components/tag";
+import { toast } from "react-toastify";
+import Tag from "../../components/tag";
 
 function ProductCard({ item }) {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ function ProductCard({ item }) {
         imgUrl: item.image_url,
       })
     );
+    toast("Product added successfully");
   };
   return (
     <div className="rounded-lg shadow-md shadow-green-600 border border-green-600">
@@ -31,7 +33,7 @@ function ProductCard({ item }) {
             {item.name}
           </h5>
           <p>{item.category.name}</p>
-          {/* <Tag items={item.tags} /> */}
+          <Tag items={item.tags} />
           <div className="flex items-center justify-between">
             <p className="font-bold text-gray-700">Rp.{item.price}</p>
             <button

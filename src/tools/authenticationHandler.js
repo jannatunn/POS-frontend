@@ -1,12 +1,12 @@
 import axios from "axios";
-import { createCookie } from "./cookieHandller";
+import { createCookie, getCookie } from "./cookieHandller";
 import { config } from "../config";
 
 export const loginService = async (data) => {
-  const result = await axios.post(`${config.apikey}/auth/login`, data);
+  const result = await axios.post(`${config.base_url}/auth/login`, data);
   try {
     createCookie(result.token);
-    console.log(result)
+    console.log(result);
     return result;
   } catch (error) {
     console.error(error.message);

@@ -31,11 +31,13 @@ export default function Login() {
       loginService(data)
         .then(() => {
           navigate("/");
+          console.log(" data 1");
         })
         .then(() => {
+          console.log(" data 2");
+
           // navigate back to form login and pop up error notification
-        })
-      
+        });
     },
   });
 

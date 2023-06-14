@@ -1,8 +1,8 @@
+import React from "react";
 import { useSelector } from "react-redux";
 
 function Profile() {
-  const auth = useSelector((state) => state.auth);
-
+  const { user } = useSelector((state) => state.auth);
   return (
     <div className="flex items-center">
       <table className="w-full h-min text-sm text-left text-gray-500 shadow">
@@ -18,8 +18,8 @@ function Profile() {
         </thead>
         <tbody>
           <tr className="bg-white border-b">
-            <td className="px-6 py-4">{auth.user.full_name}</td>
-            <td className="px-6 py-4">{auth.user.email}</td>
+            <td className="px-6 py-4">{user.full_name}</td>
+            <td className="px-6 py-4">{user.email}</td>
           </tr>
         </tbody>
       </table>

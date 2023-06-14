@@ -1,9 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { config } from "../../config";
 import { addItem, reduceItem } from "../../app/features/cart";
+import { useNavigate } from "react-router-dom";
 
 function Cart() {
   const { cartItems, totalAmount } = useSelector((state) => state.cart);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   return (
@@ -86,7 +88,9 @@ function Cart() {
               ))}
             </tbody>
           </table>
-          <button className="w-full py-2 text-white text-center bg-green-500">
+          <button
+            onClick={() => navigate("/checkout")}
+            className="w-full  py-1 my-2 text-white text-center bg-green-500">
             Chekout
           </button>
         </div>

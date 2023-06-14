@@ -4,11 +4,9 @@ import * as Yup from "yup";
 import { InputForm } from "../input";
 import { loginUser } from "../../app/api/auth";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -24,18 +22,17 @@ export default function Login() {
     }),
     onSubmit: (data) => {
       dispatch(loginUser(data));
-      console.log(data);
-      navigate("/");
-      // window.location.replace("/");
+      window.location.replace("/");
+
+      // loginService(data)
+      //   .then(() => {
+      //     window.location.replace("/");
+      //   })
+      //   .then(() => {
+      //     // navigate back to form login and pop up error notification
+      //   });
     },
   });
-
-  // useEffect(() => {
-  //   let cookies = getCookie();
-  //   if (cookies !== "") {
-  //     window.location.replace("/");
-  //   }
-  // });
 
   return (
     <div className="my-6 w-96 mx-auto  shadow-md shadow-gray-400 rounded overflow-hidden">

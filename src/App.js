@@ -10,7 +10,7 @@ import Pemesanan from "./components/pemesanan";
 import Address from "./components/address";
 import AddAddress from "./components/add addrress";
 import Logout from "./components/logout";
-import Checkout from "./components/checkout";
+// import Checkout from "./components/checkout";
 
 export default function App() {
   return (
@@ -21,7 +21,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="cart" element={<Cart />} />
           <Route path="login" element={<Login />} />
-          <Route path="checkout" element={<Checkout />} />
+          {/* <Route path="checkout" element={<Checkout />} /> */}
           <Route path="account/*" element={<Account />}>
             <Route path="alamat" element={<Address />} />
             <Route path="addaddress" element={<AddAddress />} />

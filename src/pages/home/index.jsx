@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ProductCard from "../../components/productCard";
 import Tag from "../../components/tag";
 import { getProducts, getTagsByCategory } from "../../app/api/product";
+import { addItem } from "../../app/features/cart";
 
 export default function Home() {
   const { status, productItems, category } = useSelector(
@@ -15,6 +16,7 @@ export default function Home() {
     dispatch(getProducts());
     getTagsByCategory(category).then(({ data }) => setTags(data));
   }, [category, dispatch]);
+
   return (
     <div className="mx-16 mt-4">
       <strong>Tags:</strong>
@@ -26,7 +28,13 @@ export default function Home() {
       ) : (
         <div className="container-md my-3 grid grid-cols-3 gap-4 items-end">
           {productItems.map((product, index) => {
-            return <ProductCard item={product} key={index} />;
+            return (
+              <ProductCard
+                item={product}
+                key={index}
+                onAddToCart={() => dispatch(addItem(product))}
+              />
+            );
           })}
         </div>
       )}

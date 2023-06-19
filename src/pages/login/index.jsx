@@ -1,9 +1,10 @@
 import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { InputForm } from "../input";
-import { loginUser } from "../../app/api/auth";
 import { useDispatch } from "react-redux";
+import { loginUser } from "../../app/features/auth";
+import { userLogin } from "../../app/api/auth";
+import { InputForm } from "../../components/input";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -20,20 +21,16 @@ export default function Login() {
         .min(8, "minimal panjang password 8 karakter")
         .required("Password wajib di isi.."),
     }),
-    onSubmit: (data) => {
-      dispatch(loginUser(data));
-      window.location.replace("/");
+    onSubmit: async (formData) => {
+      const data = await userLogin(formData);
+      const { token, user } = data;
 
-      // loginService(data)
-      //   .then(() => {
-      //     window.location.replace("/");
-      //   })
-      //   .then(() => {
-      //     // navigate back to form login and pop up error notification
-      //   });
+      console.log(" data in compontn login", data);
+      console.log("token ", token);
+      dispatch(loginUser({ token, user }));
+      window.location.replace("/");
     },
   });
-
   return (
     <div className="my-6 w-96 mx-auto  shadow-md shadow-gray-400 rounded overflow-hidden">
       <h2 className="py-2.5 text-center text-lg font-bold bg-green-600 uppercase ">

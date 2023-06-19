@@ -1,17 +1,16 @@
 import React, { useEffect } from "react";
 import DataTable from "react-data-table-component";
-import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import { getAddress } from "../../app/api/address";
-import { addressSelector } from "../../app/features/address/reducers";
 
 export default function Address() {
-  const dispatch = useDispatch();
-  const address = useSelector(addressSelector.selectAll);
-  console.log(address);
+  const [address, setAddress] = useState([]);
+
   useEffect(() => {
-    dispatch(getAddress());
-  }, [dispatch]);
+    console.log("useeffect in address componen");
+    getAddress().then(({ data: { data } }) => setAddress(data));
+  }, []);
   return (
     <div className="w-full">
       <Link

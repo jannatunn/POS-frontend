@@ -3,13 +3,17 @@ import axios from "axios";
 import { config } from "../../config";
 
 export const userLogin = async (data) => {
-  return await axios.post(`${config.base_url}/auth/login`, data);
-};
-
-export const loginUser = createAsyncThunk("login/userLogin", async (data) => {
+  console.log(data);
   const res = await axios.post(`${config.base_url}/auth/login`, data);
   return res.data;
-});
+};
+
+// export const loginUser = createAsyncThunk("login/userLogin", async (data) => {
+//   console.log(data);
+//   const res = await axios.post(`${config.base_url}/auth/login`, data);
+//   console.log("apakah hiit api auth di eksekusi");
+//   return res.data;
+// });
 
 export const logoutUser = createAsyncThunk("auth/logoutUser", async () => {
   let token = localStorage.getItem("auth");

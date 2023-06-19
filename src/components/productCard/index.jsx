@@ -1,25 +1,9 @@
 import React from "react";
 import { config } from "../../config";
 import { MdAdd } from "react-icons/md";
-import { useDispatch } from "react-redux";
-import { addItem } from "../../app/features/cart";
-import { toast } from "react-toastify";
 import Tag from "../../components/tag";
 
-function ProductCard({ item }) {
-  const dispatch = useDispatch();
-
-  const addToCart = () => {
-    dispatch(
-      addItem({
-        id: item._id,
-        productName: item.name,
-        price: item.price,
-        imgUrl: item.image_url,
-      })
-    );
-    toast("Product added successfully");
-  };
+function ProductCard({ item, onAddToCart }) {
   return (
     <div className="rounded-lg shadow-md shadow-green-600 border border-green-600">
       <div className="rounded-xl shadow-md overflow-hidden shadow-green-200">
@@ -37,7 +21,7 @@ function ProductCard({ item }) {
           <div className="flex items-center justify-between">
             <p className="font-bold text-gray-700">Rp.{item.price}</p>
             <button
-              onClick={addToCart}
+              onClick={() => onAddToCart()}
               className="inline-flex items-center text-2xl font-medium text-center text-white bg-green-500 rounded-full hover:bg-green-800 focus:outline-none ">
               <MdAdd />
             </button>

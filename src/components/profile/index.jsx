@@ -1,28 +1,21 @@
 import React from "react";
+import DataTable from "react-data-table-component";
 import { useSelector } from "react-redux";
 
 function Profile() {
-  const { user } = useSelector((state) => state.auth);
+  const auth = useSelector((state) => state.auth);
   return (
-    <div className="flex items-center">
-      <table className="w-full h-min text-sm text-left text-gray-500 shadow">
-        <thead className="text-xs text-gray-700 uppercase ">
-          <tr>
-            <th scope="col" className="px-6 py-3">
-              Name
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Email
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr className="bg-white border-b">
-            <td className="px-6 py-4">{user.full_name}</td>
-            <td className="px-6 py-4">{user.email}</td>
-          </tr>
-        </tbody>
-      </table>
+    <div className="border w-full p-5 m-1">
+      <DataTable
+        columns={[
+          { selector: (row) => row.label },
+          { selector: (row) => row.value },
+        ]}
+        data={[
+          { label: "Nama", value: auth.user.full_name },
+          { label: "Email", value: auth.user.email },
+        ]}
+      />
     </div>
   );
 }

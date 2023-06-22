@@ -2,10 +2,13 @@ import React from "react";
 import { config } from "../../config";
 import { MdAdd } from "react-icons/md";
 import Tag from "../../components/tag";
+import { formatRupiah } from "../../utils";
 
 function ProductCard({ item, onAddToCart }) {
   return (
-    <div className="rounded-lg shadow-md shadow-green-600 border border-green-600">
+    <div
+      key={item.id}
+      className="rounded-lg shadow-md shadow-green-600 border border-green-600">
       <div className="rounded-xl shadow-md overflow-hidden shadow-green-200">
         <img
           src={`${config.base_url}/images/products/${item.image_url}`}
@@ -19,7 +22,9 @@ function ProductCard({ item, onAddToCart }) {
           <p>{item.category.name}</p>
           <Tag items={item.tags} />
           <div className="flex items-center justify-between">
-            <p className="font-bold text-gray-700">Rp.{item.price}</p>
+            <p className="font-bold text-gray-700">
+              {formatRupiah(item.price)}
+            </p>
             <button
               onClick={() => onAddToCart()}
               className="inline-flex items-center text-2xl font-medium text-center text-white bg-green-500 rounded-full hover:bg-green-800 focus:outline-none ">

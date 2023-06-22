@@ -55,7 +55,7 @@ export default function Cart() {
     },
   ];
   return (
-    <div className="relative overflow-x-auto shadow-md sm:rounded-lg mx-16 mt-5">
+    <div className="relative overflow-x-auto shadow-md shadow-gray-400 rounded mx-16 mt-5">
       <div className="">
         <div>
           <h1 className="px-6 py-3 uppercase font-semibold bg-green-600">

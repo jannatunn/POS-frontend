@@ -5,6 +5,8 @@ const initialState = {
   productItems: [],
   status: "",
   category: "",
+  search: "",
+  tags: [],
 };
 
 const productSlice = createSlice({
@@ -41,7 +43,16 @@ const productSlice = createSlice({
     },
     setCategory: (state, action) => {
       state.category = action.payload;
-      console.log(state.category);
+    },
+    setSearch: (state, action) => {
+      state.search = action.payload;
+    },
+    toggleTags: (state, action) => {
+      if (!state.tags.includes(action.payload)) {
+        state.tags = [action.payload];
+      } else {
+        state.tags = state.tags.filter((tag) => tag !== action.payload);
+      }
     },
   },
   extraReducers: (builder) => {
@@ -56,7 +67,8 @@ const productSlice = createSlice({
   },
 });
 
-export const { addItem, setCategory } = productSlice.actions;
+export const { addItem, setCategory, setSearch, toggleTags } =
+  productSlice.actions;
 export const getProduct = (state) => state.product.productItems;
 
 export default productSlice.reducer;

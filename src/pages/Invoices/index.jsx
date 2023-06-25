@@ -1,6 +1,5 @@
 import { config } from "../../config";
 import React, { useCallback, useEffect, useState } from "react";
-import { Card, Container } from "react-bootstrap";
 import DataTable from "react-data-table-component";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router";
@@ -12,6 +11,8 @@ export default function Invoices() {
   const [invoice, setInvoice] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
   const auth = useSelector((state) => state.auth);
+
+  console.log(config);
 
   const builderData = useCallback(
     (data) => {
@@ -68,10 +69,10 @@ export default function Invoices() {
   }, [id, builderData]);
 
   return (
-    <Container className="mt-5 p-5">
-      <Card>
-        <Card.Header>Invoices</Card.Header>
-        <Card.Body>
+    <>
+      <div className="my-6 m-auto w-9/12 shadow-md shadow-gray-400 rounded overflow-hidden">
+        <h2 className="pl-2 py-2 uppercase font-bold bg-green-600">account</h2>
+        <div className="flex p-2 gap-2">
           {!isFetching ? (
             <DataTable
               data={invoice}
@@ -81,8 +82,8 @@ export default function Invoices() {
               ]}
             />
           ) : null}
-        </Card.Body>
-      </Card>
-    </Container>
+        </div>
+      </div>
+    </>
   );
 }

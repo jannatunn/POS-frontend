@@ -19,10 +19,8 @@ function Checkout() {
     };
 
     const { data } = await createOrder(payload);
-    console.log(" data ===>", data);
     if (!data.error) {
       dispatch(clearItem());
-      console.log("harusnya ke componen invoices");
       navigate(`/invoices/${data._id}`);
     }
   };

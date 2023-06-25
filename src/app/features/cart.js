@@ -27,7 +27,8 @@ const cartSlice = createSlice({
         .filter((item) => item.qty > 0);
     },
     clearItem: (state, action) => {
-      state.cart = [];
+      const idToDelete = action.payload;
+      return state.filter((item) => item.id !== idToDelete);
     },
   },
 });

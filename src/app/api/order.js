@@ -18,11 +18,13 @@ export async function getInvoiceByOrderId(order_id) {
     ? JSON.parse(localStorage.getItem("auth"))
     : {};
 
-  return await axios.get(`${config.api_host}/api/invoices/${order_id}`, {
+  const res = await axios.get(`${config.base_url}/api/invoices/${order_id}`, {
     headers: {
       authorization: `Bearer ${token}`,
     },
   });
+  console.log("get invoices", res.data);
+  return res;
 }
 
 export async function getOrders() {
@@ -30,7 +32,7 @@ export async function getOrders() {
     ? JSON.parse(localStorage.getItem("auth"))
     : {};
 
-  return await axios.get(`${config.api_host}/api/orders?limit=`, {
+  return await axios.get(`${config.base_url}/api/orders?limit=`, {
     headers: { authorization: `Bearer ${token}` },
   });
 }

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getCategories } from "../../app/api/product";
 import Badge from "../badge";
-import { setCategory } from "../../app/features/product";
+import { setCategory, setSearch } from "../../app/features/product";
 
 export default function Header() {
   const [categories, setCategories] = useState([]);
@@ -44,7 +44,7 @@ export default function Header() {
             <input
               type="text"
               placeholder="Pesan makanan..."
-              // onChange={(e) => setSearch(e.target.value)}
+              onChange={(e) => dispatch(setSearch(e.target.value))}
               className="w-full text-white bg-green-700 px-4 py-2 items-center outline-none rounded shadow-md shadow-gray-800"
             />
           </form>

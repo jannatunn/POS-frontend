@@ -1,5 +1,5 @@
 import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
-import { getAddress } from "../../api/address";
+import { getAddresses } from "../api/address";
 
 const addressEntity = createEntityAdapter({
   selectId: (address) => address._id,
@@ -9,8 +9,8 @@ const addressSlice = createSlice({
   name: "address",
   initialState: addressEntity.getInitialState(),
   extraReducers: (builder) => {
-    builder.addCase(getAddress.fulfilled, (state, action) => {
-      addressEntity.setAll(state, action.payload);
+    builder.addCase(getAddresses.fulfilled, (state, action) => {
+      console.log(state, action.payload);
     });
   },
 });

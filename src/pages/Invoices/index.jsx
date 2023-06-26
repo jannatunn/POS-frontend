@@ -12,8 +12,6 @@ export default function Invoices() {
   const [isFetching, setIsFetching] = useState(false);
   const auth = useSelector((state) => state.auth);
 
-  console.log(config);
-
   const builderData = useCallback(
     (data) => {
       return [
@@ -65,7 +63,7 @@ export default function Invoices() {
     setIsFetching(true);
     getInvoiceByOrderId(id)
       .then(({ data }) => setInvoice(builderData(data)))
-      .finally((_) => setIsFetching(false));
+      .finally(() => setIsFetching(false));
   }, [id, builderData]);
 
   return (

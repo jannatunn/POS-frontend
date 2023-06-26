@@ -23,7 +23,6 @@ export async function getInvoiceByOrderId(order_id) {
       authorization: `Bearer ${token}`,
     },
   });
-  console.log("get invoices", res.data);
   return res;
 }
 

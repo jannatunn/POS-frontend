@@ -12,6 +12,8 @@ export default function Cart() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  console.log(cart.length);
+
   const handlePlus = (item) => {
     dispatch(addItem(item));
   };

@@ -8,7 +8,6 @@ export default function Address() {
   const [address, setAddress] = useState([]);
 
   useEffect(() => {
-    console.log("useeffect in address componen");
     getAddress().then(({ data: { data } }) => setAddress(data));
   }, []);
   return (

@@ -49,7 +49,7 @@ function Footer() {
               <ul className="text-gray-800 font-medium">
                 <li className="mb-1">
                   <a
-                    href="https://github.com/themesberg/flowbite"
+                    href="https://github.com/jannatunn"
                     className="hover:underline ">
                     Github
                   </a>

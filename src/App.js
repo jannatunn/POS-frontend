@@ -13,6 +13,7 @@ import { listen } from "./app/listener";
 import Cart from "./pages/cart";
 import Invoices from "./pages/Invoices";
 import Order from "./components/Order";
+import Shop from "./pages/shop";
 
 export default function App() {
   useEffect(() => {
@@ -26,6 +27,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="cart" element={<Cart />} />
           <Route path="login" element={<Login />} />
+          <Route path="shop" element={<Shop />} />
           <Route path="invoices/:id" element={<Invoices />} />
 
           <Route path="checkout/*" element={<Checkout />}>

@@ -7,7 +7,13 @@ module.exports = {
       center: true,
       padding: "5rem",
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        belanosima: ["Belanosima", "sans-serif"],
+        roboto: ["Roboto Mono", "monospace"],
+        dancing: ["Dancing Script", "cursive"],
+      },
+    },
   },
   plugins: [],
 };

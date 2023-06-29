@@ -7,11 +7,14 @@ function Footer() {
       <div className="mx-auto w-full max-w-screen-xl px-20 py-6 lg:py-8">
         <div className="grid grid-cols-2">
           {/* logo */}
-          <div className="">
+          <div className="flex flex-col">
             <Link to={`/`}>
-              <h1 className="font-bold text-xl italic text-slate-900">
-                PO<span className="text-white">S</span>.
-              </h1>
+              <span className="w-min font-bold text-xl flex flex-col items-center text-slate-900">
+                <div className="italic uppercase">waroeng</div>
+                <div className="font-dancing text-gray-100 mt-[-15px]">
+                  kenangan
+                </div>
+              </span>
             </Link>
             <p className="text-gray-800 font-medium">
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio

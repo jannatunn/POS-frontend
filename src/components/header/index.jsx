@@ -21,8 +21,11 @@ export default function Header() {
       <div className="px-12 py-3">
         <div className="flex items-center gap-2">
           <Link to={`/`}>
-            <h1 className="font-bold text-xl italic text-slate-900">
-              PO<span className="text-white">S</span>.
+            <h1 className="font-bold text-xl flex flex-col items-center text-slate-900">
+              <div className="italic uppercase">waroeng</div>
+              <div className="font-dancing text-gray-100 mt-[-15px]">
+                kenangan
+              </div>
             </h1>
           </Link>
           <div className="pr-2">

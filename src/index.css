@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "NamaFont";
+  src: url("./fonts/Oldenburg-Regular.ttf") format("truetype");
+  /* Tambahkan format font lainnya jika diperlukan */
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",

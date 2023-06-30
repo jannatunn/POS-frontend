@@ -22,8 +22,8 @@ export default function Header() {
         <div className="flex items-center gap-2">
           <Link to={`/`}>
             <h1 className="font-bold text-xl flex flex-col items-center text-slate-900">
-              <div className="italic uppercase">waroeng</div>
-              <div className="font-dancing text-gray-100 mt-[-15px]">
+              <div className="italic uppercase ">waroeng</div>
+              <div className="font-dancing text-gray-100 mt-[-15px] ">
                 kenangan
               </div>
             </h1>

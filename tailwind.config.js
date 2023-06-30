@@ -9,9 +9,10 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        belanosima: ["Belanosima", "sans-serif"],
-        roboto: ["Roboto Mono", "monospace"],
         dancing: ["Dancing Script", "cursive"],
+        sofia: ["Sofia", "cursive"],
+        belanosima: ["Belanosima", "sans-serif"],
+        olden: ["Oldenburg", "kursif"],
       },
     },
   },

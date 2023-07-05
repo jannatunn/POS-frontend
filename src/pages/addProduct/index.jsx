@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { getTags } from "../../app/api/product";
+// import { tagSelector } from "../../app/features/tag";
 
 function AddProduct() {
+  const [tags, setTag] = useState([]);
+
+  console.log(tags);
+
+  useEffect(() => {
+    getTags().then((data) => setTag(data));
+  }, []);
   return (
-    <div className="m-5">
-      <form>
+    <div className="my-6 m-auto w-9/12 shadow-md shadow-gray-400 rounded overflow-hidden">
+      <form className="mx-6 my-4">
         <div className="relative z-0 mb-6 group">
           <input
             type="text"
@@ -14,7 +23,7 @@ function AddProduct() {
             required
           />
           <label
-            for="floating_password"
+            htmlFor="floating_password"
             className="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
             Product Name
           </label>
@@ -29,7 +38,7 @@ function AddProduct() {
             required
           />
           <label
-            for="floating_password"
+            htmlFor="floating_password"
             className="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
             description
           </label>
@@ -44,7 +53,7 @@ function AddProduct() {
             required
           />
           <label
-            for="floating_repeat_password"
+            htmlFor="floating_repeat_password"
             className="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
             price
           </label>
@@ -59,7 +68,7 @@ function AddProduct() {
             required
           />
           <label
-            for="floating_repeat_password"
+            htmlFor="floating_repeat_password"
             className="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
             gambar
           </label>
@@ -76,7 +85,7 @@ function AddProduct() {
               required
             />
             <label
-              for="floating_phone"
+              htmlFor="floating_phone"
               className="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
               category
             </label>
@@ -91,10 +100,17 @@ function AddProduct() {
               required
             />
             <label
-              for="floating_company"
+              htmlFor="floating_company"
               className="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
               tags
             </label>
+            {tags.map((tag) => {
+              return (
+                <div className="grid grid-cols-3   bg-red-200 w-min">
+                  <div>{tag.name}</div>
+                </div>
+              );
+            })}
           </div>
         </div>
         <button

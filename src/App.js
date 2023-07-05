@@ -13,7 +13,8 @@ import { listen } from "./app/listener";
 import Cart from "./pages/cart";
 import Invoices from "./pages/Invoices";
 import Order from "./components/Order";
-import AddProduct from "./components/addProduct";
+import UpdateAddress from "./components/update Addrress";
+// import AddProduct from "./pages/addProduct";
 
 export default function App() {
   useEffect(() => {
@@ -27,7 +28,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="cart" element={<Cart />} />
           <Route path="login" element={<Login />} />
-          <Route path="addproduct" element={<AddProduct />} />
+          {/* <Route path="addproduct" element={<AddProduct />} /> */}
           <Route path="invoices/:id" element={<Invoices />} />
 
           <Route path="checkout/*" element={<Checkout />}>
@@ -36,6 +37,7 @@ export default function App() {
           <Route path="account/*" element={<Account />}>
             <Route path="alamat" element={<Address />} />
             <Route path="addaddress" element={<AddAddress />} />
+            <Route path="updateaddress/:id" element={<UpdateAddress />} />
             <Route path="pemesanan" element={<Order />} />
             <Route path="logout" element={<Logout />} />
           </Route>

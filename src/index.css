@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "NamaFont";
+  font-family: "olden";
   src: url("./fonts/Oldenburg-Regular.ttf") format("truetype");
   /* Tambahkan format font lainnya jika diperlukan */
 }

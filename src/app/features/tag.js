@@ -11,13 +11,13 @@ const tagSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getTags.fulfilled, (state, action) => {
+      console.log(state.ids);
+      console.log("testing-testing");
       tagEntity.setAll(state, action.payload);
     });
   },
 });
 
-export const tagSelector = tagEntity.getSelectors(
-  (state) => state.tag
-);
+export const tagSelector = tagEntity.getSelectors((state) => state.tag);
 
 export default tagSlice.reducer;

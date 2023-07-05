@@ -2,8 +2,14 @@ import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { InputAddress } from "../input/index";
+import { addAddresses } from "../../app/api/address";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 export default function AddAddress() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const formik = useFormik({
     initialValues: {
       nama: "",
@@ -22,7 +28,8 @@ export default function AddAddress() {
       kelurahan: Yup.string().required("kelurahann wajib diisi.."),
     }),
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      dispatch(addAddresses(values));
+      navigate("/account/alamat");
     },
   });
   return (

@@ -3,6 +3,8 @@ import { config } from "../../config";
 
 export const userLogin = async (data) => {
   const res = await axios.post(`${config.base_url}/auth/login`, data);
+  console.log(data);
+  console.log(res.data);
   return res.data;
 };
 

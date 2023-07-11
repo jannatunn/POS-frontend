@@ -23,7 +23,7 @@ function Footer() {
           </Link>
         </div>
         <div className="flex gap-5 ">
-          <div className="flex items-center gap-4 font-olden">
+          <div className="flex items-center gap-4 font-sofia">
             <span className="flex items-center gap-1">
               <AiFillPhone />
               <Link to={`tel:15000 96`}>15000 96</Link>

@@ -5,6 +5,7 @@ import Tag from "../../components/tag";
 import { formatRupiah } from "../../utils";
 
 function ProductCard({ item, onAddToCart }) {
+  console.log(item.name);
   return (
     <div
       key={item.id}
@@ -17,9 +18,9 @@ function ProductCard({ item, onAddToCart }) {
         />
         <div className="p-5">
           <h5 className="mb-2 text-2xl truncate font-bold capitalize tracking-tight text-gray-900">
-            {item.name}
+            {item.name ?? "Product gagall"}
           </h5>
-          <p>{item.category.name}</p>
+          {/* {item.category.name ? <p>{item.category.name}</p> : "umum"} */}
           <Tag items={item.tags} />
           <div className="flex items-center justify-between">
             <p className="font-bold text-gray-700">

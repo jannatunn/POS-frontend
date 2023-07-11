@@ -2,13 +2,12 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { config } from "../../config";
 
-export const getProducts = createAsyncThunk(
-  "product/getProducts",
-  async ({ category, search, tags }) => {
-    const res = await axios.get(
-      `${config.base_url}/api/products?q=${search}&category=${category}&tags[]=${tags}`
-    );
-    return res.data.data;
+export const getCategory = createAsyncThunk(
+  "product/getcategories",
+  async () => {
+    const res = await axios.get(`${config.base_url}/api/categories`);
+    console.log(res.data);
+    return res.data;
   }
 );
 

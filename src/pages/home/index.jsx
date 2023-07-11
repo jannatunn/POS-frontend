@@ -1,35 +1,36 @@
-import React, { useEffect, useState } from "react";
-import PaginatedItems from "../../components/paginate";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts, getTagsByCategory } from "../../app/api/product";
 import Footer from "../../components/footer/Footer";
-import Tag from "../../components/tag";
-import { toggleTags } from "../../app/features/product";
+import { categorySelector } from "../../app/features/category";
+import { getCategory } from "../../app/api/category";
+import CategoryCard from "../../components/categoryCard";
 
 export default function Home() {
-  const { status, category, search, tags } = useSelector(
-    (state) => state.product
-  );
+  const categories = useSelector(categorySelector.selectAll);
+
   const dispatch = useDispatch();
-  const [tag, setTag] = useState([]);
 
   useEffect(() => {
-    dispatch(getProducts({ category, search, tags }));
-    getTagsByCategory(category).then(({ data }) => setTag(data));
-  }, [category, dispatch, tags, search]);
+    dispatch(getCategory());
+  }, [dispatch]);
 
   return (
     <>
-      <div className="mx-16 mt-4">
-        <strong>Tags:</strong>
-        <Tag items={tag} onClick={(tag) => dispatch(toggleTags(tag))} />
-        {status === "loading" ? (
-          <div className="flex justify-center items-center text-2xl">
-            loading...
-          </div>
-        ) : (
-          <PaginatedItems itemsPerPage={10} />
-        )}
+      <div className="flex flex-col justify-center items-center my-4">
+        <h1 className="my-4 uppercase text-xl text-center font-sofia">
+          -- pilih menu --
+        </h1>
+        <div className="w-9/12 grid grid-cols-3 gap-4 ">
+          {!categories ? (
+            <div className="flex justify-center items-center text-2xl">
+              data not found
+            </div>
+          ) : (
+            categories.map((category, i) => (
+              <CategoryCard key={i} item={category} />
+            ))
+          )}
+        </div>
       </div>
       <Footer />
     </>

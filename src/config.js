@@ -3,6 +3,7 @@ export const config = {
   global_ongkir: process.env.REACT_APP_GLOBAL_ONGKIR,
   owner: process.env.REACT_APP_OWNER,
   contact: process.env.REACT_APP_CONTACT,
+  headers: process.env.REACT_APP_HEADERS,
   billing: {
     account_no: process.env.REACT_APP_BILLING_NO,
     bank_name: process.env.REACT_APP_BILLING_BANK,

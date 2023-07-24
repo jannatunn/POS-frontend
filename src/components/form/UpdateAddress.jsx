@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addressSelector } from "../../app/features/address";
-import { updateAddresses, getAddresses } from "../../app/api/address";
+import { updateAddresses } from "../../app/api/address";
 
 export default function UpdateAddress() {
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ export default function UpdateAddress() {
   const handleUpdate = async (e) => {
     e.preventDefault();
     await dispatch(updateAddresses({ data, id }));
-    navigate("/account/alamat");
+    // navigate("/account/alamat");
   };
 
   useEffect(() => {
@@ -34,9 +34,6 @@ export default function UpdateAddress() {
       setKabupaten(address.kabupaten);
     }
   }, [address]);
-  useEffect(() => {
-    dispatch(getAddresses());
-  }, [dispatch]);
   return (
     <form onSubmit={handleUpdate}>
       <div className="grid grid-cols-2">

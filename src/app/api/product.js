@@ -4,44 +4,45 @@ import { config } from "../../config";
 
 export const getProducts = createAsyncThunk(
   "product/getProducts",
-  async ({ category, search, tags }) => {
-    const res = await axios.get(
-      `${config.base_url}/api/products?q=${search}&category=${category}&tags[]=${tags}`
-    );
+  async (params) => {
+    const res = await axios(`${config.base_url}/api/products`, { params });
     return res.data.data;
+  }
+);
+
+export const getCategories = async () => {
+  return await axios(`${config.base_url}/api/categories`);
+};
+
+export const deleteProduct = createAsyncThunk(
+  "product/deleteProduct",
+  async (id) => {
+    const { token } = localStorage.getItem("auth")
+      ? JSON.parse(localStorage.getItem("auth"))
+      : {};
+
+    await axios.delete(`${config.base_url}/api/products/${id}`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
+    return id;
   }
 );
 
 export const addProduct = createAsyncThunk(
   "product/addProduct",
   async (data) => {
+    const { token } = localStorage.getItem("auth")
+      ? JSON.parse(localStorage.getItem("auth"))
+      : {};
+
     const res = await axios.post(`${config.base_url}/api/product`, data, {
       headers: {
-        "content-type": "multipart/form-data",
+        authorization: `Bearer ${token}`,
+        "Content-Type": "multipart/form-data",
       },
     });
-    console.log(data);
-    console.log(res.data);
     return res.data;
   }
 );
-
-export const getCategories = async () => {
-  const res = await axios(`${config.base_url}/api/categories`);
-  return res.data;
-};
-
-export const getTags = async () => {
-  const res = await axios(`${config.base_url}/api/tags`);
-  return res.data;
-};
-
-// export const getTags = createAsyncThunk("tags/getTags", async () => {
-//   const res = await axios(`${config.base_url}/api/tags`);
-//   console.log(res.data);
-//   return res.data;
-// });
-
-export const getTagsByCategory = async (category) => {
-  return await axios.get(`${config.base_url}/api/tags/${category}`);
-};

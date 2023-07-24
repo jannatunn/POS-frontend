@@ -3,44 +3,67 @@ import axios from "axios";
 import { config } from "../../config";
 
 export const getCategory = createAsyncThunk(
-  "product/getcategories",
+  "category/getcategories",
   async () => {
     const res = await axios.get(`${config.base_url}/api/categories`);
-    console.log(res.data);
     return res.data;
   }
 );
 
-export const addProduct = createAsyncThunk(
-  "product/addProduct",
+export const addCategory = createAsyncThunk(
+  "category/addCategory",
   async (data) => {
-    const res = await axios.post(`${config.base_url}/api/product`, data, {
+    const { token } = localStorage.getItem("auth")
+      ? JSON.parse(localStorage.getItem("auth"))
+      : {};
+
+    const res = await axios.post(`${config.base_url}/api/categories`, data, {
       headers: {
+        authorization: `Bearer ${token}`,
         "content-type": "multipart/form-data",
       },
     });
-    console.log(data);
+    return res.data;
+  }
+);
+
+export const updateCategory = createAsyncThunk(
+  "category/updateCategory",
+  async ({ formData, id }) => {
+    const { token } = localStorage.getItem("auth")
+      ? JSON.parse(localStorage.getItem("auth"))
+      : {};
+
+    console.log(id);
+
+    const res = await axios.patch(
+      `${config.base_url}/api/categories/${id}`,
+      formData,
+      {
+        headers: {
+          authorization: `Bearer ${token}`,
+          "content-type": "multipart/form-data",
+        },
+      }
+    );
+    console.log(formData);
     console.log(res.data);
     return res.data;
   }
 );
 
-export const getCategories = async () => {
-  const res = await axios(`${config.base_url}/api/categories`);
-  return res.data;
-};
+export const deleteCategory = createAsyncThunk(
+  "category/deleteCategory",
+  async (id) => {
+    const { token } = localStorage.getItem("auth")
+      ? JSON.parse(localStorage.getItem("auth"))
+      : {};
 
-export const getTags = async () => {
-  const res = await axios(`${config.base_url}/api/tags`);
-  return res.data;
-};
-
-// export const getTags = createAsyncThunk("tags/getTags", async () => {
-//   const res = await axios(`${config.base_url}/api/tags`);
-//   console.log(res.data);
-//   return res.data;
-// });
-
-export const getTagsByCategory = async (category) => {
-  return await axios.get(`${config.base_url}/api/tags/${category}`);
-};
+    await axios.delete(`${config.base_url}/api/categories/${id}`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
+    return id;
+  }
+);

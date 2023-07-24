@@ -1,12 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getProducts } from "../api/product";
+import { addProduct, deleteProduct, getProducts } from "../api/product";
 
 const initialState = {
   productItems: [],
   status: "",
   category: "",
   search: "",
-  tags: [],
 };
 
 const productSlice = createSlice({
@@ -19,13 +18,6 @@ const productSlice = createSlice({
     setSearch: (state, action) => {
       state.search = action.payload;
     },
-    toggleTags: (state, action) => {
-      if (!state.tags.includes(action.payload)) {
-        state.tags = [action.payload];
-      } else {
-        state.tags = state.tags.filter((tag) => tag !== action.payload);
-      }
-    },
   },
   extraReducers: (builder) => {
     builder
@@ -35,11 +27,25 @@ const productSlice = createSlice({
       })
       .addCase(getProducts.pending, (state, action) => {
         state.status = "loading";
+      })
+      .addCase(addProduct.fulfilled, (state, action) => {
+        state.productItems.push(action.payload);
+      })
+      .addCase(deleteProduct.fulfilled, (state, action) => {
+        const deletedId = action.payload;
+        state.productItems = state.productItems.filter(
+          (product) => product.id !== deletedId
+        );
       });
   },
 });
 
+// console.log("state", state.product.productItems, dataId)
+
 export const { setCategory, setSearch, toggleTags } = productSlice.actions;
 export const getProduct = (state) => state.product.productItems;
+export const selectProductById = (state, dataId) => {
+  return state.product.productItems.find((item) => item._id === dataId);
+};
 
 export default productSlice.reducer;

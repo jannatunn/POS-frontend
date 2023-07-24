@@ -1,40 +1,48 @@
 import React from "react";
 import { BiCategoryAlt } from "react-icons/bi";
-import { BsTagsFill } from "react-icons/bs";
 import { MdProductionQuantityLimits } from "react-icons/md";
+import { useSelector } from "react-redux";
+import { categorySelector } from "../../app/features/category";
+import { useNavigate } from "react-router-dom";
 
 function Side() {
+  const { productItems } = useSelector((state) => state.product);
+  const categories = useSelector(categorySelector.selectAll);
+  const navigate = useNavigate();
+
   const menu = [
     {
       name: "Product",
       icon: <MdProductionQuantityLimits />,
+      data: productItems,
     },
     {
       name: "Category",
       icon: <BiCategoryAlt />,
-    },
-    {
-      name: "Tag",
-      icon: <BsTagsFill />,
+      data: categories,
     },
   ];
+  const handleClick = (name) => {
+    navigate(`${name}`);
+  };
 
   return (
     <div
-      className="content-left h-screen border-r border-gray-500 w-64 py-9 space-y-10 overflow-y-scroll "
+      className="h-[calc(90vh)] w-64 py-9 space-y-10"
       style={{ scrollbarWidth: "none" }}>
-      <div className="">
+      <div className="space-y-2">
         <div className=" mb-3 uppercase text-center font-bold text-green-700">
           Add to
         </div>
         {menu.map((val, index) => {
           return (
-            <div
+            <button
+              onClick={() => handleClick(val.name)}
               key={index}
-              className="text-gray-700 flex items-center gap-4 border-b-2 py-3 px-6 font-medium hover:bg-green-400 cursor-pointer">
+              className="text-gray-700 py-3 px-6 w-full font-medium rounded flex items-center gap-4  bg-green-300 hover:bg-green-400 cursor-pointer">
               <div>{val.icon}</div>
               <div>{val.name}</div>
-            </div>
+            </button>
           );
         })}
       </div>

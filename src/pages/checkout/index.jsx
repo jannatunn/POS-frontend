@@ -12,8 +12,6 @@ function Checkout() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  console.log("selectedAddress ===>", selectedAddress);
-
   const handleCreateOrder = async () => {
     let payload = {
       delivery_address: selectedAddress._id,

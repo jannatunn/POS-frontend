@@ -22,10 +22,8 @@ export default function Login() {
         .required("Password wajib di isi.."),
     }),
     onSubmit: async (formData) => {
-      console.log(formData);
       const data = await userLogin(formData);
       const { token, user } = data;
-
       dispatch(loginUser({ token, user }));
       window.location.replace("/");
     },

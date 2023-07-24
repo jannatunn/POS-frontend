@@ -38,8 +38,6 @@ export const addAddresses = createAsyncThunk(
       ? JSON.parse(localStorage.getItem("auth"))
       : {};
 
-    console.log("data ===>", data);
-
     const res = await axios.post(
       `${config.base_url}/api/delivery-addresses`,
       data,
@@ -60,19 +58,17 @@ export const updateAddresses = createAsyncThunk(
       ? JSON.parse(localStorage.getItem("auth"))
       : {};
 
-    const res = await axios.patch(
+    const res = await axios.put(
       `${config.base_url}/api/delivery-address/${id}`,
-      { data },
+      data,
       {
         headers: {
-          authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
       }
     );
     console.log(data);
-    console.log(id);
-    console.log(res.data);
-
-    return res.data;
+    console.log(res.meta);
+    return res.data.data;
   }
 );

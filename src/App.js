@@ -13,22 +13,25 @@ import Cart from "./pages/cart";
 import Invoices from "./pages/Invoices";
 import Order from "./components/Order";
 import AddProduct from "./pages/add-product";
-import UpdateAddress from "./components/update-addrress";
+import UpdateAddress from "./components/form/UpdateAddress";
 import AddAddress from "./components/add-address";
+// import Shop from "./pages/shop";
 
 export default function App() {
   useEffect(() => {
     listen();
   }, []);
   return (
-    <div>
+    <div className="">
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/*" element={<Home />}></Route>
+          <Route path="management/*" element={<AddProduct />}></Route>
+
           <Route path="cart" element={<Cart />} />
           <Route path="login" element={<Login />} />
-          <Route path="addproduct" element={<AddProduct />} />
+
           <Route path="invoices/:id" element={<Invoices />} />
 
           <Route path="checkout/*" element={<Checkout />}>

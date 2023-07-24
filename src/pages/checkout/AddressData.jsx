@@ -11,8 +11,6 @@ const AddressData = ({ setAddressData }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  console.log(address);
-
   const handleChange = (row) => {
     if (row.selectedCount > 0) {
       setAddressData(row.selectedRows[0]);

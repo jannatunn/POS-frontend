@@ -8,10 +8,11 @@ import { userLogout } from "../../app/features/auth";
 export default function Logout() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   useEffect(() => {
-    logoutUser()
-      .then(() => dispatch(userLogout()))
-      .then(() => navigate("/"));
+    logoutUser().then(() => dispatch(userLogout()));
+    // .then(() => navigate("/"));
+    navigate("/");
   }, [dispatch, navigate]);
   return (
     <div className="d-flex justify-content-center">

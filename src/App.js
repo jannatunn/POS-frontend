@@ -14,8 +14,8 @@ import Invoices from "./pages/Invoices";
 import Order from "./components/Order";
 import AddProduct from "./pages/add-product";
 import UpdateAddress from "./components/form/UpdateAddress";
-import AddAddress from "./components/add-address";
-// import Shop from "./pages/shop";
+import AddAddress from "./components/form/AddAddress";
+import Register from "./pages/login/CreateAkun";
 
 export default function App() {
   useEffect(() => {
@@ -30,6 +30,7 @@ export default function App() {
           <Route path="management/*" element={<AddProduct />}></Route>
 
           <Route path="cart" element={<Cart />} />
+          <Route path="register" element={<Register />} />
           <Route path="login" element={<Login />} />
 
           <Route path="invoices/:id" element={<Invoices />} />

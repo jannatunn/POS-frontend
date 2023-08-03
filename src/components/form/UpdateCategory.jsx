@@ -15,14 +15,10 @@ function FormUpdateCategory() {
     categorySelector.selectById(state, id)
   );
 
-  console.log(name, image);
-
   const handleInputChange = (e) => {
     if (e.target.name === "image") {
-      console.log(e.target.files[0]);
       setImage(e.target.files[0]);
     } else {
-      console.log(e.target.value);
       setName(e.target.value);
     }
   };
@@ -34,11 +30,9 @@ function FormUpdateCategory() {
     const formDataToSend = new FormData();
     formDataToSend.append("name", name);
     formDataToSend.append("image", image);
-    console.log(formData);
     try {
       dispatch(updateCategory({ formData, id }));
-      console.log(formData);
-      // navigate("/management/category");
+      navigate("/management/category");
     } catch (error) {
       console.error(error);
     }

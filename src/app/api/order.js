@@ -4,9 +4,9 @@ import { config } from "../../config";
 export const createOrder = async (payload) => {
   const { token } = localStorage.getItem("auth")
     ? JSON.parse(localStorage.getItem("auth"))
-    : {};
+    : null;
 
-  return await axios.post(`${config.base_url}/api/orders`, payload, {
+  return await axios.post(`${config.base_url}/orders`, payload, {
     headers: {
       authorization: `Bearer ${token}`,
     },
@@ -16,9 +16,9 @@ export const createOrder = async (payload) => {
 export async function getInvoiceByOrderId(order_id) {
   let { token } = localStorage.getItem("auth")
     ? JSON.parse(localStorage.getItem("auth"))
-    : {};
+    : null;
 
-  const res = await axios.get(`${config.base_url}/api/invoices/${order_id}`, {
+  const res = await axios.get(`${config.base_url}/invoices/${order_id}`, {
     headers: {
       authorization: `Bearer ${token}`,
     },
@@ -29,9 +29,9 @@ export async function getInvoiceByOrderId(order_id) {
 export async function getOrders() {
   let { token } = localStorage.getItem("auth")
     ? JSON.parse(localStorage.getItem("auth"))
-    : {};
+    : null;
 
-  return await axios.get(`${config.base_url}/api/orders?limit=`, {
+  return await axios.get(`${config.base_url}/orders?limit=`, {
     headers: { authorization: `Bearer ${token}` },
   });
 }

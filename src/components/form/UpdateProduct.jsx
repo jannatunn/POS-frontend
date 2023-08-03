@@ -20,9 +20,6 @@ function FormUpdateProduct() {
     price: 0,
     image: null,
   });
-
-  console.log(product);
-  console.log(category);
   console.log(image);
 
   const handleInputChange = (e) => {

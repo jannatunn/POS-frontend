@@ -33,7 +33,7 @@ function Footer() {
                 waroengKenangan@gmail.com
               </Link>
             </span>
-          </div>
+          </div>  
 
           <div className="flex items-center gap-1 font-olden">
             <AiFillFacebook />

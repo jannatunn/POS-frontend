@@ -10,9 +10,10 @@ module.exports = {
     extend: {
       fontFamily: {
         dancing: ["Dancing Script", "cursive"],
-        sofia: ["Sofia", "cursive"],
+        sofia: ["cursive"],
         belanosima: ["Belanosima", "sans-serif"],
         olden: ["Oldenburg", "kursif"],
+        rem: ["Source Sans 3", "sans-serif"],
       },
     },
   },

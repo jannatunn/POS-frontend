@@ -15,7 +15,7 @@ export default function Header() {
             {" "}
             <Link to={`/`}>
               <h1 className="font-bold text-xl flex flex-col items-center text-slate-900">
-                <div className="italic uppercase ">waroeng</div>
+                <div className="italic uppercase">waroeng</div>
                 <div className="font-dancing text-gray-100 mt-[-15px] ">
                   kenangan
                 </div>
@@ -29,7 +29,11 @@ export default function Header() {
               <Badge />
             </Link>
             <Link
-              to={auth.user === null ? "/login" : "/account/pemesanan"}
+              to={
+                auth.user === null || !auth || auth === {}
+                  ? "/login"
+                  : "/account/pemesanan"
+              }
               className="">
               <img src={NAIM} alt="naim" className="w-6 h-6 rounded-full" />
             </Link>

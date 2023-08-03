@@ -18,7 +18,10 @@ function Checkout() {
       delivery_fee: config.global_ongkir,
     };
 
+    console.log("payload", payload);
+
     const { data } = await createOrder(payload);
+    console.log("data", data);
     if (!data.error) {
       dispatch(clearItem());
       navigate(`/invoices/${data._id}`);

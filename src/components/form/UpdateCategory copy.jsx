@@ -16,13 +16,10 @@ function FormUpdateCategory() {
     categorySelector.selectById(state, id)
   );
 
-  console.log(formData);
-
   const handleInputChange = (e) => {
     if (e.target.name === "image") {
       setFormData({ ...formData, [e.target.name]: e.target.files[0] });
     } else {
-      console.log(e.target.value);
       setFormData({ ...formData, [e.target.name]: e.target.value });
     }
   };

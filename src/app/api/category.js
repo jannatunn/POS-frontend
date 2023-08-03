@@ -5,7 +5,7 @@ import { config } from "../../config";
 export const getCategory = createAsyncThunk(
   "category/getcategories",
   async () => {
-    const res = await axios.get(`${config.base_url}/api/categories`);
+    const res = await axios.get(`${config.base_url}/categories`);
     return res.data;
   }
 );
@@ -15,14 +15,15 @@ export const addCategory = createAsyncThunk(
   async (data) => {
     const { token } = localStorage.getItem("auth")
       ? JSON.parse(localStorage.getItem("auth"))
-      : {};
+      : null;
 
-    const res = await axios.post(`${config.base_url}/api/categories`, data, {
+    const res = await axios.post(`${config.base_url}/category`, data, {
       headers: {
         authorization: `Bearer ${token}`,
         "content-type": "multipart/form-data",
       },
     });
+    console.log("res.data", res.data);
     return res.data;
   }
 );
@@ -32,22 +33,16 @@ export const updateCategory = createAsyncThunk(
   async ({ formData, id }) => {
     const { token } = localStorage.getItem("auth")
       ? JSON.parse(localStorage.getItem("auth"))
-      : {};
+      : null;
 
-    console.log(id);
-
-    const res = await axios.patch(
-      `${config.base_url}/api/categories/${id}`,
-      formData,
-      {
-        headers: {
-          authorization: `Bearer ${token}`,
-          "content-type": "multipart/form-data",
-        },
-      }
-    );
-    console.log(formData);
-    console.log(res.data);
+    const res = await axios.put(`${config.base_url}/category/${id}`, formData, {
+      headers: {
+        authorization: `Bearer ${token}`,
+        "content-type": "multipart/form-data",
+      },
+    });
+    console.log("res.data", res.data);
+    console.log("formData", formData);
     return res.data;
   }
 );
@@ -57,9 +52,9 @@ export const deleteCategory = createAsyncThunk(
   async (id) => {
     const { token } = localStorage.getItem("auth")
       ? JSON.parse(localStorage.getItem("auth"))
-      : {};
+      : null;
 
-    await axios.delete(`${config.base_url}/api/categories/${id}`, {
+    await axios.delete(`${config.base_url}/categories/${id}`, {
       headers: {
         authorization: `Bearer ${token}`,
       },

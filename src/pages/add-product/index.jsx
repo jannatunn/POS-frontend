@@ -1,12 +1,12 @@
 import { Route, Routes } from "react-router-dom";
 import Side from "./sidebar";
-import DaftarProduct from "../../components/daftarItems/DaftarProduct";
-import DaftarCategories from "../../components/daftarItems/DaftarCategories";
-import FormProduct from "../../components/form/FormAddProduct";
-import FormUpdateProduct from "../../components/form/FormUpdateProduct";
+import DaftarProduct from "../../components/form/DaftarProduct";
+import DaftarCategories from "../../components/form/DaftarCategories";
+import FormProduct from "../../components/form/AddProduct";
+import FormUpdateProduct from "../../components/form/UpdateProduct";
 
-import FormUpdateCategory from "../../components/form/FormUpdateCategory";
-import FormAddCategory from "../../components/form/FormAddCategory";
+import FormUpdateCategory from "../../components/form/UpdateCategory";
+import FormAddCategory from "../../components/form/AddCategory";
 
 function AddProduct() {
   return (

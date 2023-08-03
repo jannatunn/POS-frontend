@@ -3,7 +3,7 @@ import { config } from "../../config";
 import { formatRupiah } from "../../utils";
 import { MdAdd } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import Sidebar from "../../components/sidebar";
+import Sidebar from "./Sidebar";
 import { addItem } from "../../app/features/cart";
 
 export default function Shop({ onAddToCart }) {
@@ -14,12 +14,12 @@ export default function Shop({ onAddToCart }) {
     <div className="flex justify-center content-left overflow-y-auto ">
       <div className="mt-5 w-11/12 flex gap-6 ">
         <Sidebar />
-        <div className=" content-left grid sm:grid-cols-1 lg:grid-cols-3 gap-3 ">
+        <div className=" content-left grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 ">
           {productItems.length ? (
             productItems.map((item, i) => (
               <div
                 key={i}
-                className="w-60 lg:w-72 rounded-xl border border-green-500 shadow-md overflow-hidden shadow-green-200">
+                className="md:min-w-fit lg:min-w-fit rounded-xl border border-green-500 shadow-md overflow-hidden shadow-green-200 bg-gray-100">
                 <img
                   src={`${config.base_url}/images/products/${item.image_url}`}
                   alt={item.description}

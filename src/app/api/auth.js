@@ -1,10 +1,14 @@
 import axios from "axios";
 import { config } from "../../config";
 
+export const register = async (data) => {
+  const res = await axios.post(`${config.base_url}/register`, data);
+  console.log("res.data", res.data);
+  return res.data;
+};
+
 export const userLogin = async (data) => {
-  const res = await axios.post(`${config.base_url}/auth/login`, data);
-  console.log(data);
-  console.log(res.data);
+  const res = await axios.post(`${config.base_url}/login`, data);
   return res.data;
 };
 
@@ -14,7 +18,7 @@ export const logoutUser = async () => {
     : {};
 
   return await axios
-    .post(`${config.base_url}/auth/login`, null, {
+    .post(`${config.base_url}/login`, null, {
       headers: {
         authorization: `Bearer ${token}`,
       },

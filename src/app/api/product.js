@@ -5,13 +5,13 @@ import { config } from "../../config";
 export const getProducts = createAsyncThunk(
   "product/getProducts",
   async (params) => {
-    const res = await axios(`${config.base_url}/api/products`, { params });
+    const res = await axios(`${config.base_url}/products`, { params });
     return res.data.data;
   }
 );
 
 export const getCategories = async () => {
-  return await axios(`${config.base_url}/api/categories`);
+  return await axios(`${config.base_url}/categories`);
 };
 
 export const deleteProduct = createAsyncThunk(
@@ -19,9 +19,9 @@ export const deleteProduct = createAsyncThunk(
   async (id) => {
     const { token } = localStorage.getItem("auth")
       ? JSON.parse(localStorage.getItem("auth"))
-      : {};
+      : null;
 
-    await axios.delete(`${config.base_url}/api/products/${id}`, {
+    await axios.delete(`${config.base_url}/product/${id}`, {
       headers: {
         authorization: `Bearer ${token}`,
       },
@@ -35,9 +35,9 @@ export const addProduct = createAsyncThunk(
   async (data) => {
     const { token } = localStorage.getItem("auth")
       ? JSON.parse(localStorage.getItem("auth"))
-      : {};
+      : null;
 
-    const res = await axios.post(`${config.base_url}/api/product`, data, {
+    const res = await axios.post(`${config.base_url}/product`, data, {
       headers: {
         authorization: `Bearer ${token}`,
         "Content-Type": "multipart/form-data",

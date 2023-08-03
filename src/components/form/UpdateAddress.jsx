@@ -8,20 +8,21 @@ export default function UpdateAddress() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { id } = useParams();
-  const [name, setName] = useState("");
+  const [nama, setName] = useState("");
   const [provinsi, setProvinsi] = useState("");
   const [kabupaten, setKabupaten] = useState("");
   const [kecamatan, setKecamatan] = useState("");
   const [kelurahan, setKelurahan] = useState("");
   const [detail, setDetail] = useState("");
-  const data = { name, provinsi, kabupaten, kecamatan, kelurahan, detail, id };
+  const data = { nama, provinsi, kabupaten, kecamatan, kelurahan, detail, id };
 
   const address = useSelector((state) => addressSelector.selectById(state, id));
 
   const handleUpdate = async (e) => {
     e.preventDefault();
+    console.log("data", data);
     await dispatch(updateAddresses({ data, id }));
-    // navigate("/account/alamat");
+    navigate("/account/alamat");
   };
 
   useEffect(() => {
@@ -44,7 +45,7 @@ export default function UpdateAddress() {
               <input
                 type="text"
                 className="w-full text-gray-800 text-sm px-3 py-1.5 bg-green-200 outline-none"
-                value={name}
+                value={nama}
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
@@ -110,7 +111,7 @@ export default function UpdateAddress() {
         </div>
       </div>
       <button type="submit" className="w-full font-medium py-1 px-3 bg-red-400">
-        Submit
+        Updated
       </button>
     </form>
   );

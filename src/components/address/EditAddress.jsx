@@ -7,8 +7,6 @@ import { getAddress } from "../../app/api/address";
 export default function Address() {
   const [address, setAddress] = useState([]);
 
-  console.log(address);
-
   useEffect(() => {
     getAddress().then(({ data: { data } }) => setAddress(data));
   }, []);

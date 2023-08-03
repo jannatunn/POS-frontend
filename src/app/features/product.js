@@ -40,8 +40,6 @@ const productSlice = createSlice({
   },
 });
 
-// console.log("state", state.product.productItems, dataId)
-
 export const { setCategory, setSearch, toggleTags } = productSlice.actions;
 export const getProduct = (state) => state.product.productItems;
 export const selectProductById = (state, dataId) => {

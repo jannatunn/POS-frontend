@@ -19,9 +19,9 @@ const addressSlice = createSlice({
         addressEntity.addOne(state, action.payload);
       })
       .addCase(updateAddresses.fulfilled, (state, action) => {
-        console.log("state ===>", action);
+        console.log("action.payload", action.payload);
         addressEntity.updateOne(state, {
-          id: action.payload._id,
+          id: action.payload.id,
           updates: action.payload,
         });
       })

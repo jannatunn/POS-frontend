@@ -5,9 +5,9 @@ import { config } from "../../config";
 export const getAddresses = createAsyncThunk("address/getAddress", async () => {
   const { token } = localStorage.getItem("auth")
     ? JSON.parse(localStorage.getItem("auth"))
-    : {};
+    : null;
 
-  const res = await axios.get(`${config.base_url}/api/delivery-address`, {
+  const res = await axios.get(`${config.base_url}/delivery-address`, {
     headers: {
       authorization: `Bearer ${token}`,
     },
@@ -20,13 +20,14 @@ export const deleteAddresses = createAsyncThunk(
   async (id) => {
     const { token } = localStorage.getItem("auth")
       ? JSON.parse(localStorage.getItem("auth"))
-      : {};
+      : null;
 
-    await axios.delete(`${config.base_url}/api/delivery-address/${id}`, {
+    await axios.delete(`${config.base_url}/delivery-address/${id}`, {
       headers: {
         authorization: `Bearer ${token}`,
       },
     });
+    console.log("id", id);
     return id;
   }
 );
@@ -36,10 +37,10 @@ export const addAddresses = createAsyncThunk(
   async (data) => {
     const { token } = localStorage.getItem("auth")
       ? JSON.parse(localStorage.getItem("auth"))
-      : {};
+      : null;
 
     const res = await axios.post(
-      `${config.base_url}/api/delivery-addresses`,
+      `${config.base_url}/delivery-addresses`,
       data,
       {
         headers: {
@@ -56,10 +57,10 @@ export const updateAddresses = createAsyncThunk(
   async ({ data, id }) => {
     const { token } = localStorage.getItem("auth")
       ? JSON.parse(localStorage.getItem("auth"))
-      : {};
+      : null;
 
     const res = await axios.put(
-      `${config.base_url}/api/delivery-address/${id}`,
+      `${config.base_url}/delivery-address/${id}`,
       data,
       {
         headers: {
@@ -67,8 +68,7 @@ export const updateAddresses = createAsyncThunk(
         },
       }
     );
-    console.log(data);
-    console.log(res.meta);
-    return res.data.data;
+    console.log("data api", data);
+    return res.data;
   }
 );

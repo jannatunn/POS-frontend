@@ -12,18 +12,20 @@ export default function Invoices() {
   const [isFetching, setIsFetching] = useState(false);
   const auth = useSelector((state) => state.auth);
 
+  console.log("invoice", invoice);
+
   const builderData = useCallback(
     (data) => {
       return [
         { label: "Status", value: data.payment_status },
-        { label: "Order ID", value: `#${data.order.order_number}` },
+        { label: "Order ID", value: `#${data._id}` },
         { label: "Total Amount", value: formatRupiah(data.total) },
         {
           label: "Billed to",
           value: (
             <div>
               <br />
-              <strong>{auth.user.full_name}</strong>
+              <strong>{auth.user.name}</strong>
               <br />
               {auth.user.email}
               <br />
@@ -56,7 +58,7 @@ export default function Invoices() {
         },
       ];
     },
-    [auth.user.full_name, auth.user.email]
+    [auth.user.name, auth.user.email]
   );
 
   useEffect(() => {
